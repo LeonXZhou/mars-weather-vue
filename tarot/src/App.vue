@@ -1,13 +1,17 @@
 <template>
-  <Card v-bind="cardInfo" />
+  <TopNav @numberSelection="numberSelectionListener" />
+  <div v-if="displayState !== 'search'">
+    <div>{{ displayState }}</div>
+  </div>
+  
 </template>
 
 <script>
 import axios from "axios";
-import Card from "./components/Card.vue";
+import TopNav from "./components/TopNav.vue";
 export default {
   name: "App",
-  components: { CardSet },
+  components: { TopNav },
 
   data() {
     return {
@@ -15,21 +19,30 @@ export default {
         name: "leon",
         desc: "adsfasdf",
       },
+      displayState: "default",
     };
   },
 
   created() {
     axios
-      .get("https://rws-cards-api.herokuapp.com/api/v1/cards/random",{ params: { n: 10 } })
+      .get("https://rws-cards-api.herokuapp.com/api/v1/cards/random", {
+        params: { n: 10 },
+      })
       .then((response) => {
         console.log(response);
       })
       .catch((error) => {
-        console.log('asdf');
+        console.log("asdf");
         this.cardInfo.name = "no internet :(";
         this.cardInfo.desc = "no internet :(";
         console.log(error);
       });
+  },
+
+  methods: {
+    numberSelectionListener(value) {
+      this.displayState = value;
+    },
   },
 };
 </script>

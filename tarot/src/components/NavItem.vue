@@ -1,11 +1,18 @@
 <template>
-  <div>This is NavItem</div>
+  <div @click="selectNumber">{{ text }}</div>
 </template>
 
 <script>
-import NavItem from './NavIem.vue'
 export default {
-  name: "TopNav",
-  components: {NavItem}
-}
+  name: "NavItem",
+  props: {
+    text: String,
+    value: [String, Number],
+  },
+  methods: {
+    selectNumber() {
+      this.$emit("numberSelection", this.value);
+    },
+  },
+};
 </script>

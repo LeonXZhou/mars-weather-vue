@@ -6,6 +6,7 @@
       Number(displayState) === 3 ||
       Number(displayState) === 5
     "
+    class="cardSetContainer"
   >
     <CardSet :cards="cards" />
   </div>
@@ -51,5 +52,10 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+.cardSetContainer{
+  width:100vw;
+  position: absolute;
+  top: 20vh;
+}
 </style>

@@ -21,6 +21,8 @@ export default {
 .cardSet {
   display: flex;
   justify-content: space-around;
+  align-items: space-between;
+  flex-wrap: wrap;
 }
 
 .list-move,

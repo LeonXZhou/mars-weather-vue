@@ -1,5 +1,5 @@
 <template>
-  <div @click="selectNumber">{{ text }}</div>
+  <div class="navItem" @click="selectNumber">{{ text }}</div>
 </template>
 
 <script>
@@ -16,3 +16,20 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.navItem {
+  display: flex;
+  align-items: center;
+
+  height: 100%;
+  padding-left: 10px;
+  padding-right: 10px;
+
+  color: white
+}
+.navItem:hover {
+  background-color: transparent;
+  background-color: rgb(44, 44, 44);
+}
+</style>

@@ -1,29 +1,40 @@
 <template>
   <TopNav @numberSelection="numberSelectionListener" />
-  <div
-    v-if="
-      Number(displayState) === 1 ||
-      Number(displayState) === 3 ||
-      Number(displayState) === 5
-    "
-    class="cardSetContainer"
-  >
-    <CardSet :cards="cards" />
+  <div class="mainBody">
+    <div
+      v-if="
+        Number(displayState) === 1 ||
+        Number(displayState) === 3 ||
+        Number(displayState) === 5
+      "
+      class="cardSetContainer"
+    >
+      <CardSet :cards="cards" />
+    </div>
+        <div
+      v-if="
+        displayState ==='search'
+      " 
+    >
+      <Search></Search>
+    </div>
+    
   </div>
 </template>
 
 <script>
 import TopNav from "./components/TopNav.vue";
 import CardSet from "./components/CardSet.vue";
+import Search from "./components/Search.vue"
 import axios from "axios";
 export default {
   name: "App",
-  components: { TopNav, CardSet },
+  components: { TopNav, CardSet, Search },
 
   data() {
     return {
       displayState: "default",
-      cards:[],
+      cards: [],
     };
   },
 
@@ -37,7 +48,7 @@ export default {
       ) {
         axios
           .get("https://rws-cards-api.herokuapp.com/api/v1/cards/random", {
-            params: { n: value},
+            params: { n: value },
           })
           .then((response) => {
             this.cards = [...response.data.cards];
@@ -53,9 +64,22 @@ export default {
 </script>
 
 <style scoped>
-.cardSetContainer{
-  width:100vw;
+.cardSetContainer {
+  width: 100vw;
+}
+.mainBody {
+  display: flex;
+
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 100vw;
+  height: 95vh;
+  left: 0;
+  top: 5vh;
+
+  /* background-image: url("../public/Tarot/background.jpg"); */
   position: absolute;
-  top: 20vh;
 }
 </style>

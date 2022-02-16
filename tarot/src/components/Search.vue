@@ -1,7 +1,7 @@
 <template>
   <div class="search">
     <form @submit.prevent="">
-      <input type="text" v-model="search" />
+      <input type="text" v-model="search" placeholder="enter card name"/>
     </form>
     <div class="results">
       <div v-for="card in cards" :key="card">
@@ -44,6 +44,8 @@ export default {
               console.log(error);
             });
         }, 100);
+      } else {
+        this.cards = [];
       }
     },
   },

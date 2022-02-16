@@ -7,17 +7,17 @@
     />
     <NavItem
       @numberSelection="numberSelectionListener"
-      text="3 Card"
+      text="3 Cards"
       value="3"
     />
     <NavItem
       @numberSelection="numberSelectionListener"
-      text="5 Card"
+      text="5 Cards"
       value="5"
     />
     <NavItem
       @numberSelection="numberSelectionListener"
-      text="Search Card"
+      text="Search Cards"
       value="search"
     />
   </nav>

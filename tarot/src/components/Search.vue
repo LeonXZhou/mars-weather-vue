@@ -16,10 +16,8 @@
 
 <script>
 import axios from "axios";
-import CardSet from "./CardSet.vue";
 export default {
   name: "Search",
-  components: { CardSet },
   data() {
     return {
       search: "",

@@ -58,6 +58,10 @@ export default {
             console.log(error);
           });
       }
+      if (this.displayState === "search")
+      {
+        this.cards = [];
+      }
     },
   },
 };

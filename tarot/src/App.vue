@@ -1,47 +1,51 @@
 <template>
   <TopNav @numberSelection="numberSelectionListener" />
-  <div v-if="displayState !== 'search'">
-    <div>{{ displayState }}</div>
+  <div
+    v-if="
+      Number(displayState) === 1 ||
+      Number(displayState) === 3 ||
+      Number(displayState) === 5
+    "
+  >
+    <CardSet :cards="cards" />
   </div>
-  
 </template>
 
 <script>
-import axios from "axios";
 import TopNav from "./components/TopNav.vue";
+import CardSet from "./components/CardSet.vue";
+import axios from "axios";
 export default {
   name: "App",
-  components: { TopNav },
+  components: { TopNav, CardSet },
 
   data() {
     return {
-      cardInfo: {
-        name: "leon",
-        desc: "adsfasdf",
-      },
       displayState: "default",
+      cards:[],
     };
-  },
-
-  created() {
-    axios
-      .get("https://rws-cards-api.herokuapp.com/api/v1/cards/random", {
-        params: { n: 10 },
-      })
-      .then((response) => {
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log("asdf");
-        this.cardInfo.name = "no internet :(";
-        this.cardInfo.desc = "no internet :(";
-        console.log(error);
-      });
   },
 
   methods: {
     numberSelectionListener(value) {
       this.displayState = value;
+      if (
+        Number(this.displayState) === 1 ||
+        Number(this.displayState) === 3 ||
+        Number(this.displayState) === 5
+      ) {
+        axios
+          .get("https://rws-cards-api.herokuapp.com/api/v1/cards/random", {
+            params: { n: value},
+          })
+          .then((response) => {
+            this.cards = [...response.data.cards];
+          })
+          .catch((error) => {
+            console.log("asdf");
+            console.log(error);
+          });
+      }
     },
   },
 };

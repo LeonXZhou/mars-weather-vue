@@ -30,19 +30,21 @@ export default {
       if (this.timeoutSearch !== null) {
         clearTimeout(this.timeoutSearch);
       }
-      this.timeoutSearch = setTimeout(() => {
-        axios
-          .get("https://rws-cards-api.herokuapp.com/api/v1/cards/search", {
-            params: { name: this.search },
-          })
-          .then((response) => {
-            this.cards = [...response.data.cards];
-          })
-          .catch((error) => {
-            console.log("asdf");
-            console.log(error);
-          });
-      }, 100);
+      if (this.search !== "") {
+        this.timeoutSearch = setTimeout(() => {
+          axios
+            .get("https://rws-cards-api.herokuapp.com/api/v1/cards/search", {
+              params: { name: this.search },
+            })
+            .then((response) => {
+              this.cards = [...response.data.cards];
+            })
+            .catch((error) => {
+              console.log("asdf");
+              console.log(error);
+            });
+        }, 100);
+      }
     },
   },
 };
@@ -71,7 +73,7 @@ div.results {
   height: 80vh;
   width: 90vw;
   overflow-y: auto;
-  top:15vh;
+  top: 15vh;
 }
 </style>
 

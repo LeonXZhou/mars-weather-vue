@@ -21,21 +21,32 @@ export default {
 <style>
 .cardSet {
   display: flex;
+  justify-content: space-around;
 }
 
-.card{
-  width: 10em;
-  height: 20em;
+.card {
+  width: 18vw;
+  border-radius: 10px;
+  border-style: solid;
 }
 
-.card p{
-  height:12em;
-  width:8em;
-  overflow:scroll;
+.card p {
+  height: 16vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
+.card h1 {
+  height: 6vw;
 
+  font-size: 2.5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 
+  border-style: solid;
+}
 
 .list-move,
 .list-enter-active {

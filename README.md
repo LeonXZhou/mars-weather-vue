@@ -3,6 +3,8 @@ A simple frontend SPA built using axios and Vue.js framework.
 
 Heroku deployment: [https://tarot-vue-frontend.herokuapp.com/](https://tarot-vue-frontend.herokuapp.com/)
 
+When clicking 1/2/3 cards on the top nav for the first time, cards may take 10-15 seconds to load. The backend api and data is from [rws-cards-api](https://rws-cards-api.herokuapp.com/) which is hosted on heroku and may need a while to spin up. 
+
 ## Features:
 ### Cards:
 Users can select a tarot reading of 1, 3, or 5 cards. Each individual card can be flippe over

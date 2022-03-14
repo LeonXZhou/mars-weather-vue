@@ -11,22 +11,18 @@
     >
       <CardSet :cards="cards" />
     </div>
-        <div
-      v-if="
-        displayState ==='search'
-      " 
-    >
+    <div v-if="displayState === 'search'">
       <Search></Search>
     </div>
-    
   </div>
 </template>
 
 <script>
 import TopNav from "./components/TopNav.vue";
 import CardSet from "./components/CardSet.vue";
-import Search from "./components/Search.vue"
+import Search from "./components/Search.vue";
 import axios from "axios";
+
 export default {
   name: "App",
   components: { TopNav, CardSet, Search },
@@ -36,6 +32,19 @@ export default {
       displayState: "default",
       cards: [],
     };
+  },
+
+  created: function () {
+      axios
+        .get("https://rws-cards-api.herokuapp.com/api/v1/cards/random", {
+          params: { n: 10 },
+        })
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
   },
 
   methods: {
@@ -58,8 +67,7 @@ export default {
             console.log(error);
           });
       }
-      if (this.displayState === "search")
-      {
+      if (this.displayState === "search") {
         this.cards = [];
       }
     },
